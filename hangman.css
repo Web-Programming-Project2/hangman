@@ -1,3 +1,8 @@
+body{
+	background-color: white;
+	padding-left: 1em;
+}
+
 #bannerarea{
     margin-bottom: 2em;
     vertical-align: bottom;
@@ -21,6 +26,11 @@ a img {
 	border: none;
 }
 
-#homepage li{
-    list-style-type: none;
+ul{
+	list-style-type:none:
+	padding-left: 0em;
+}
+
+ul li a img{
+	vertical-align: middle;
 }
