@@ -34,3 +34,39 @@ ul{
 ul li a img{
 	vertical-align: middle;
 }
+
+body > div, form{
+    overflow: hidden;
+    width: 35em;
+}
+
+div{
+    overflow: hidden;
+}
+
+/*form styles*/
+fieldset{
+    background-color: #E0E0E0;
+    border: 2px outset black;
+    border-radius: 10px;
+}
+
+fieldset strong,
+ul strong, 
+fieldset label.left,
+fieldset .column{
+    float: left;
+    width: 11em;
+}
+
+input[type = "submit"]{
+    background-color: gainsboro;
+    font-size: 120%;
+    font-weight: bold;
+}
+
+legend{
+    background-color: gainsboro;
+    border: 2px outset black;
+    padding: 0.2em;
+}
