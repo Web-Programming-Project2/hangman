@@ -10,13 +10,13 @@
             <legend>New User Signup:</legend>
 
                 <label class = "heading" for = "name">Username: </label>
-                <input type = "text" name = "name" size = "16"> <br>
+                <input type = "text" name = "name" size = "16"> <br> <br>
 
                 <label class = "heading" for = "pw">Password: </label>
-                <input type = "text" name = "pw" size = "16"> <br>
+                <input type = "text" name = "pw" size = "16"> <br> <br>
 
                 <label class = "heading" for = "cpw">Confirm Password: </label>
-                <input type = "text" name = "cpw" size = "16"> <br>
+                <input type = "text" name = "cpw" size = "16"> <br> <br>
 
             <!--Submit button -->
             <input type = "submit" value = "signup">
