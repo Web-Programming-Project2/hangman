@@ -1,4 +1,4 @@
-# project2-juanat
+# hangman
 
 Repo containing my collaborations to project 02 - Create Hangman game - must incorporate at least 4 levels of difficulaties along with clues.
 - php, html, and css only
