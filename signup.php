@@ -9,14 +9,14 @@
         <fieldset class = "column">
             <legend>New User Signup:</legend>
 
-                <label class = "heading" for = "name">Username: </label>
-                <input type = "text" name = "name" size = "16"> <br> <br>
+                <label class = "heading" for = "username">Username: </label>
+                <input type = "text" name = "username" size = "16"> <br> <br>
 
-                <label class = "heading" for = "pw">Password: </label>
-                <input type = "text" name = "pw" size = "16"> <br> <br>
+                <label class = "heading" for = "password">Password: </label>
+                <input type = "password" name = "password" size = "16"> <br> <br>
 
-                <label class = "heading" for = "cpw">Confirm Password: </label>
-                <input type = "text" name = "cpw" size = "16"> <br> <br>
+                <label class = "heading" for = "confirm">Confirm Password: </label>
+                <input type = "password" name = "confirm" size = "16"> <br> <br>
 
             <!--Submit button -->
             <input type = "submit" value = "signup">
