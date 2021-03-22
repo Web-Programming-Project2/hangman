@@ -1,5 +1,5 @@
-abstentious
-vascularity
-razzamatazz
-oxygenizing
-zygomorphic
+abstentious "self-restraining"
+vascularity "supplied with blood"
+razzamatazz "colorful"
+habitancy "total number of population"
+zygomorphic "of a flower"

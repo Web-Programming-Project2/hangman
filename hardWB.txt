@@ -1,5 +1,5 @@
-consonant
-abounding
-xylophone
-whimsical
-catharsis
+consonant "sound"
+abounding "existing"
+xylophone "instrument"
+whimsical "fanciful"
+catharsis  "providing relief"

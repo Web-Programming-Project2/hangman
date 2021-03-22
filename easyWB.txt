@@ -1,5 +1,5 @@
-apple
-jacket
-poodle
-ocean
-salmon
+apple "What falls from above and helped explain gravity?"
+jacket "What do you put on when cold?"
+poodle "What is a fluffy dog?"
+ocean "Where do fish live?"
+salmon "There their name is also a color."

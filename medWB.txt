@@ -1,5 +1,5 @@
-admiral
-blowgun
-legends
-plunder
-scammed 
+admiral "High ranking naval officer"
+blowgun "Long tube to propel objects"
+legends "traditional story"
+plunder "To steal goods"
+scammed "To be taken for a fool"

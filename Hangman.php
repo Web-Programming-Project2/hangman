@@ -13,9 +13,11 @@
 require_once 'hangedman.php';
 
 $words = array();
+$hints =array();
 $numwords = 0;
 
 function printPage($image, $guesstemplate, $which, $guessed, $wrong) {
+
   echo <<<ENDPAGE
 <!DOCTYPE html>
 <html>
@@ -38,16 +40,27 @@ function printPage($image, $guesstemplate, $which, $guessed, $wrong) {
 	  <legend>Your next guess</legend>
 	  <input type="text" name="letter"  />
 	  <input type="submit" value="Guess" />
+
 	</fieldset>
   </form>
 </body>
 ENDPAGE;
+
+global $hints;
+$which =$_POST["word"];
+$hint  = $hints[$which];
+echo '<br>';
+echo '<br>';
+echo '<br>';
+echo 'hint: ';
+print_r($hint);
 }
 
 function loadWords() {
   global $words;
   global $numwords;
   global $file_name;
+  global $hints;
 
    switch ($_GET['level']) {
      case 'easy':
@@ -69,10 +82,12 @@ function loadWords() {
   while (true) {
 	  $str = fgets($input);
 	  if (!$str) break;
-	  $words[] = rtrim($str);
+	  $words[] = strtok($str," ");
+    $temp = explode(" ", $str);
+    array_shift($temp);
+    $hints[] = implode(" ",$temp);
 	  $numwords++;
   }
-
   fclose($input);
 }
 
@@ -169,7 +184,7 @@ function handleGuess() {
   }
 }
 
-//header("Content-type: text/plain");
+
 loadWords();
 
 $method = $_SERVER["REQUEST_METHOD"];
@@ -180,7 +195,10 @@ if ($method == "POST") {
   startGame();
 }
 
+
+
 ?>
+
 </div>
 </body>
 </html>
