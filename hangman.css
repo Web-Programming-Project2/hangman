@@ -1,6 +1,7 @@
 body{
-	background-color: white;
+	background-color: #CC5500;
 	padding-left: 1em;
+
 }
 
 #bannerarea{
@@ -14,7 +15,13 @@ body{
 #home h1{
     font-family: "Lucinda Console";
 }
-
+.main{
+	margin-left: 25%;
+	margin-top: 10%;
+	border: 3px solid black;
+	padding: 5%;
+	background-color: #f4f0db;
+}
 a{
     color:black;
     text-decoration: none;
@@ -41,7 +48,7 @@ body > div, form{
 }
 
 div{
-    overflow: hidden;
+  	overflow: hidden;
 }
 
 /*form styles*/
@@ -52,7 +59,7 @@ fieldset{
 }
 
 fieldset strong,
-ul strong, 
+ul strong,
 fieldset label.left,
 fieldset .column{
     float: left;
@@ -69,4 +76,7 @@ legend{
     background-color: gainsboro;
     border: 2px outset black;
     padding: 0.2em;
+}
+.form{
+	text-align: center;
 }

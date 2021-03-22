@@ -1,3 +1,13 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+     <link rel="stylesheet" type="text/css" href="hangman.css?<?php echo time(); ?>" />
+  </head>
+  <body>
+    <div class="main">
+
 <?php
 
 require_once 'hangedman.php';
@@ -20,14 +30,13 @@ function printPage($image, $guesstemplate, $which, $guessed, $wrong) {
   <br />
   <p><strong>Word to guess: $guesstemplate</strong></p>
   <p>Letters used in guesses so far: $guessed</p>
-
   <form method="post" action="$script">
 	<input type="hidden" name="wrong" value="$wrong" />
 	<input type="hidden" name="lettersguessed" value="$guessed" />
 	<input type="hidden" name="word" value="$which" />
 	<fieldset>
 	  <legend>Your next guess</legend>
-	  <input type="text" name="letter" autofocus />
+	  <input type="text" name="letter"  />
 	  <input type="submit" value="Guess" />
 	</fieldset>
   </form>
@@ -38,7 +47,24 @@ ENDPAGE;
 function loadWords() {
   global $words;
   global $numwords;
-  $input = fopen("wordbank.txt", "r");
+  global $file_name;
+
+   switch ($_GET['level']) {
+     case 'easy':
+       $file_name= 'easyWB';
+       break;
+    case 'medium':
+      $file_name= 'medWB';
+      break;
+    case 'hard':
+      $file_name= 'hardWB';
+      break;
+    case 'expert':
+      $file_name= 'expertWB';
+      break;
+   }
+
+  $input = fopen("$file_name.txt", "r");
 
   while (true) {
 	  $str = fgets($input);
@@ -97,13 +123,20 @@ ENDPAGE;
 function matchLetters($word, $guessedLetters) {
   $len = strlen($word);
   $guesstemplate = str_repeat("_ ", $len);
+  $wordArr = str_split($word);
+  $glet = str_split($guessedLetters);
+  $gt = explode(" ", $guesstemplate);
+  $l1 = count($wordArr);
+  $l2= count($glet);
 
-  for ($i = 0; $i < $len; $i++) {
-	$ch = $word[$i];
-	if (strstr($guessedLetters, $ch)) {
-	  $pos = 2 * $i;
-	  $guesstemplate[$pos] = $ch;
-	}
+  for($i=0; $i < $l2 ; $i++) {
+    for($j=0; $j < $l1 ; $j++) {
+      if (strcmp($glet[$i],$wordArr[$j]) == 0){
+        $gt[$j]= $glet[$i];
+        $guesstemplate = implode(" ",$gt);
+
+      }
+    }
   }
 
   return $guesstemplate;
@@ -116,15 +149,12 @@ function handleGuess() {
   $which = $_POST["word"];
   $word  = $words[$which];
   $wrong = $_POST["wrong"];
-  
   $lettersguessed = $_POST["lettersguessed"];
   $guess = $_POST["letter"];
-  $letter = strtoupper($guess[0]);
-  
+  $letter = $guess[0];
 
   if(!strstr($word, $letter)) {
 	$wrong++;
-	
   }
 
   $lettersguessed = $lettersguessed . $letter;
@@ -134,7 +164,7 @@ function handleGuess() {
    	congratulateWinner($word);
   } else if ($wrong >= 6) {
 	killPlayer($word);
-  }  else {
+  } else {
 	printPage($hang[$wrong], $guesstemplate, $which, $lettersguessed, $wrong);
   }
 }
@@ -151,3 +181,6 @@ if ($method == "POST") {
 }
 
 ?>
+</div>
+</body>
+</html>
