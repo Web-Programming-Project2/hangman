@@ -3,7 +3,7 @@
     include("common.php");
     top();
 ?>
-    <form action = "login-validate.php" method = "post">
+    <form action = "login.php" method = "post">
     <!--Form containing the the fields: username, password-->
         <fieldset class = column>
             <legend>Login:</legend>
@@ -18,29 +18,19 @@
             <button name = "login">Login</button>
         </fieldset>
     </form>
-
-    <?php
-        if(@$_GET['Empty'] == true){
-    ?>
-        <div id = "alert">
-            <?php
-                echo $_GET['Empty']
-            ?>
-        </div>
-    <?php
-        }
-    ?>
-    
-    <?php
-        if(@$_GET['Invalid'] == true){
-    ?>
-        <div id = "alert">
-            <?php
-                echo $_GET['Invalid']
-            ?>
-        </div>
-    <?php
-        }
-    ?>
 </body>
 </html>
+
+<?php
+    if(isset($_POST['submit'])){
+        $username = $_POST['username'];
+        $password = $_POST['password'];
+
+        $file = file_get_contents("users.txt");
+        if(!strstr($file, "$username||$password")){
+            echo "Invalid username or password";
+        }else{
+            header("Location:Hangman.php");
+        }
+    } 
+?>
