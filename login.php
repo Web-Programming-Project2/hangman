@@ -22,6 +22,7 @@
 </html>
 
 <?php
+    session_start();
     if(isset($_POST['submit'])){
         $username = $_POST['username'];
         $password = $_POST['password'];
@@ -30,6 +31,8 @@
         if(!strstr($file, "$username||$password")){
             echo "Invalid username or password";
         }else{
+            $_SESSION['user'] = $username;
+            $_SESSION['logged'] = "yes";
             header("Location:Hangman.php");
         }
     } 
