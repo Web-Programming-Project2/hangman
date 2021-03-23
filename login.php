@@ -15,7 +15,7 @@
                 <input type = "password" name = "password" size = "16"> <br> <br>
 
             <!--Submit button-->
-            <button name = "login">Login</button>
+            <input name="submit" type="submit" value="login">
         </fieldset>
     </form>
 </body>
