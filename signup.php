@@ -1,10 +1,26 @@
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+     <link rel="stylesheet" type="text/css" href="temp.css?<?php echo time(); ?>" />
+  </head>
+  <body>
+
+    <div id="circle" >
+    <div class="a">
+      <a href="home.php" id="back"> <- Back to home page</a>
+    <div class="main">
+
+
 <?php
     //signup page for new users
     include("common.php");
     top();
 ?>
 
-    <form action = "signup.php" method = "post">
+    <form action = "difficulty.php" method = "post">
         <!--Form containing the fields: username and password -->
         <fieldset class = "column">
             <legend>New User Signup:</legend>
@@ -30,7 +46,7 @@
 
         $file = file_get_contents("users.txt");
         $string = "$username||$password";
-        
+
         if(!strstr($file, "$string")){
             $myFile = "users.txt";
             $fh = fopen($myFile, 'a') or die("can't open file");
@@ -44,3 +60,8 @@
         }
     }
 ?>
+    </div>
+  </div>
+</div>
+  </body>
+</html>

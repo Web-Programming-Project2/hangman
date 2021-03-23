@@ -3,20 +3,24 @@
   <head>
     <meta charset="utf-8">
     <title></title>
-     <link rel="stylesheet" type="text/css" href="hangman.css?<?php echo time(); ?>" />
+     <link rel="stylesheet" type="text/css" href="temp.css?<?php echo time(); ?>" />
   </head>
   <body>
-    <div class="main">
+    <div id="circle" >
+        <div class="a">
+      <a href="difficulty.php" id="back"> <- Back to Difficulty page</a>
 
+      <div class="main">
 <?php
 
 require_once 'hangedman.php';
 
 $words = array();
-$hints =array();
+$hints = array();
 $numwords = 0;
+$points = array();
 
-function printPage($image, $guesstemplate, $which, $guessed, $wrong) {
+function printPage($image, $guesstemplate, $which, $guessed, $wrong, $points) {
 
   echo <<<ENDPAGE
 <!DOCTYPE html>
@@ -36,6 +40,7 @@ function printPage($image, $guesstemplate, $which, $guessed, $wrong) {
 	<input type="hidden" name="wrong" value="$wrong" />
 	<input type="hidden" name="lettersguessed" value="$guessed" />
 	<input type="hidden" name="word" value="$which" />
+  <input type="hidden" name="point" value="$points" />
 	<fieldset>
 	  <legend>Your next guess</legend>
 	  <input type="text" name="letter"  />
@@ -47,6 +52,8 @@ function printPage($image, $guesstemplate, $which, $guessed, $wrong) {
 ENDPAGE;
 
 global $hints;
+global $points;
+
 $which =$_POST["word"];
 $hint  = $hints[$which];
 echo '<br>';
@@ -54,6 +61,12 @@ echo '<br>';
 echo '<br>';
 echo 'hint: ';
 print_r($hint);
+echo '<br>';
+echo '<br>';
+
+$sum = array_sum($points);
+echo 'points: ';
+echo $sum;
 }
 
 function loadWords() {
@@ -95,14 +108,17 @@ function startGame() {
   global $words;
   global $numwords;
   global $hang;
+  global $points;
 
   $which = rand(0, $numwords - 1);
   $word =  $words[$which];
   $len = strlen($word);
   $guesstemplate = str_repeat('_ ', $len);
   $script = $_SERVER["PHP_SELF"];
+  $point = $_POST["point"];
 
-  printPage($hang[0], $guesstemplate, $which, "", 0);
+
+  printPage($hang[0], $guesstemplate, $which, "", 0, $point);
 }
 
 function killPlayer($word) {
@@ -160,6 +176,7 @@ function matchLetters($word, $guessedLetters) {
 function handleGuess() {
   global $words;
   global $hang;
+  global $points;
 
   $which = $_POST["word"];
   $word  = $words[$which];
@@ -167,9 +184,14 @@ function handleGuess() {
   $lettersguessed = $_POST["lettersguessed"];
   $guess = $_POST["letter"];
   $letter = $guess[0];
+  $point = $_POST["point"];
+
 
   if(!strstr($word, $letter)) {
 	$wrong++;
+  }
+  else{
+  $points[]= 1;
   }
 
   $lettersguessed = $lettersguessed . $letter;
@@ -180,7 +202,7 @@ function handleGuess() {
   } else if ($wrong >= 6) {
 	killPlayer($word);
   } else {
-	printPage($hang[$wrong], $guesstemplate, $which, $lettersguessed, $wrong);
+	printPage($hang[$wrong], $guesstemplate, $which, $lettersguessed, $wrong, $points);
   }
 }
 
@@ -198,7 +220,8 @@ if ($method == "POST") {
 
 
 ?>
-
+</div>
+</div>
 </div>
 </body>
 </html>
