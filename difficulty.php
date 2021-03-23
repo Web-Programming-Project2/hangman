@@ -2,10 +2,13 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <link rel="stylesheet" type="text/css" href="hangman.css?<?php echo time(); ?>" />
+    <link rel="stylesheet" type="text/css" href="temp.css?<?php echo time(); ?>" />
     <title></title>
   </head>
   <body>
+    <div id="circle" >
+    <div class="a">
+      <a href="home.php" id="back"> <- Back to home page</a>
     <div class="main">
 
       <h1>Choose your difficulty</h1>
@@ -28,6 +31,8 @@
           <br>
           <input type = "submit" value = "Let's Play">
       </form>
+  </div>
+</div>
   </div>
   </body>
 </html>

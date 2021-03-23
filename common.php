@@ -1,5 +1,5 @@
 <?php
-    //file containing any common code used by the pages 
+    //file containing any common code used by the pages
     function top(){
 ?>
 
@@ -8,7 +8,7 @@
 <html lang="en" dir = "ltr">
     <head>
         <meta charset="utf-8">
-        <link rel = "stylesheet" href="hangman.css">
+        <link rel = "stylesheet" href="temp.css">
         <title>Hangman</title>
     </head>
 <body>
