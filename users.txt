@@ -1,2 +1,4 @@
 john6||password123john6||123
 alice||password
+rpowers8||1234
+rachel||1234

@@ -15,6 +15,9 @@
 
 require_once 'hangedman.php';
 
+$user =$_GET["username"];
+echo "Player: $user";
+
 $words = array();
 $hints = array();
 $numwords = 0;

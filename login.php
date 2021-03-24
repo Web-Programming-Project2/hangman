@@ -18,10 +18,11 @@
           include("common.php");
           top();
       ?>
-          <form action = "difficulty.php" method = "post">
+          <form action = "login.php" method = "post">
           <!--Form containing the the fields: username, password-->
               <fieldset class = column>
                   <legend>Login:</legend>
+
 
                       <label class = "heading" for = "username">Username: </label>
                       <input type = "text" name = "username" size = "16"> <br> <br>
@@ -29,12 +30,10 @@
                       <label class = "heading" for = "password">Password: </label>
                       <input type = "password" name = "password" size = "16"> <br> <br>
 
-                  <!--Submit button-->
-                  <button name = "login">Login</button>
-              </fieldset>
-          </form>
-      </body>
-      </html>
+            <!--Submit button-->
+            <input name="submit" type="submit" value="check info">
+        </fieldset>
+    </form>
 
       <?php
           session_start();
@@ -48,7 +47,22 @@
               }else{
                   $_SESSION['user'] = $username;
                   $_SESSION['logged'] = "yes";
-                  header("Location:Hangman.php");
+
+                  echo <<< ENDPAGE
+                  <!DOCTYPE html>
+                  <html>
+                    <head>
+                    </head>
+                  </html>
+                  <body>
+                  <form action="difficulty.php" method= "post">
+                    <input type="hidden" name="username" value= "$username"/>
+                      <input type="hidden" name="password" value= "$password"/>
+                      <br>
+                      <input type="submit"name = "submit" value = "Correct info, continue to game!">
+                  </form>
+                  </body>
+                  ENDPAGE;
               }
           }
       ?>

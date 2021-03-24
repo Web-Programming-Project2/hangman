@@ -20,7 +20,7 @@
     top();
 ?>
 
-    <form action = "difficulty.php" method = "post">
+    <form action = "signup.php" method = "post" >
         <!--Form containing the fields: username and password -->
         <fieldset class = "column">
             <legend>New User Signup:</legend>
@@ -55,6 +55,20 @@
             fwrite($fh, $newLine);
             echo "Signup completed successfully";
             fclose($fh);
+            echo <<< ENDPAGE
+            <!DOCTYPE html>
+            <html>
+              <head>
+              </head>
+            </html>
+            <body>
+            <form action="difficulty.php" method= "post">
+              <input type="hidden" name="username" value= "$username"/>
+                <input type="hidden" name="password" value= "$password"/>
+                <input type="submit"name = "submit" value = "next">
+            </form>
+            </body>
+            ENDPAGE;
         }else{
             echo "Username already in use";
         }
