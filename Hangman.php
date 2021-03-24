@@ -133,11 +133,7 @@ function congratulateWinner($word) {
   </body>
 </html>
 ENDPAGE;
-	echo "<script>
-
- var won = new Audio('win.mp3');
- won.play();
- </script>";
+	
 }
 
 function matchLetters($word, $guessedLetters) {
@@ -175,11 +171,7 @@ function handleGuess() {
 
   if(!strstr($word, $letter)) {
 	$wrong++;
-  echo "<script>
-
- var audio = new Audio('wrong.mp3');
- audio.play();
- </script>";
+  
   }
 
   $lettersguessed = $lettersguessed . $letter;
