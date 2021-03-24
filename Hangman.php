@@ -179,6 +179,7 @@ function congratulateWinner($word) {
   </body>
 </html>
 ENDPAGE;
+	
 }
 
 function matchLetters($word, $guessedLetters) {
@@ -219,6 +220,7 @@ function handleGuess() {
 
   if(!strstr($word, $letter)) {
 	$wrong++;
+  
   }
   else{
   $points[]= 1;
