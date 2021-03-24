@@ -15,8 +15,7 @@
 
 require_once 'hangedman.php';
 
-$user =$_GET["username"];
-echo "Player: $user";
+
 
 $words = array();
 $hints = array();
@@ -24,6 +23,8 @@ $numwords = 0;
 $points = array();
 
 function printPage($image, $guesstemplate, $which, $guessed, $wrong, $points) {
+  $user =$_GET["username"];
+  echo "Player: $user";
 
   echo <<<ENDPAGE
 <!DOCTYPE html>
@@ -125,6 +126,11 @@ function startGame() {
 }
 
 function killPlayer($word) {
+  global $points;
+  $user =$_GET["username"];
+  $pw =$_GET["password"];
+
+  echo "$user you lost!";
   echo <<<ENDPAGE
 <!DOCTYPE html>
 <html>
@@ -132,14 +138,27 @@ function killPlayer($word) {
 	<title>Hangman</title>
   </head>
   <body>
-	<h1>You lost!</h1>
+  <form action= "leaderboard.php" method="get" class="form">
 	<p>The word you were trying to guess was <em>$word</em>.</p>
+  <input type="hidden" name="username" value= "$user"/>
+  <input type="hidden" name="password" value= "$pw"/>
+  <input type="hidden" name="score" value= "$points"/>
+  <br>
+  <br>
+  <br>
+  <input type = "submit" value = "Check the leaderboard">
+  </form>
   </body>
 </html>
 ENDPAGE;
 }
 
 function congratulateWinner($word) {
+  global $points;
+  $score = $points[0];
+  $user =$_GET["username"];
+  $pw =$_GET["password"];
+  echo "$user you won!";
   echo <<<ENDPAGE
 <!DOCTYPE html>
 <html>
@@ -147,8 +166,16 @@ function congratulateWinner($word) {
 	<title>Hangman</title>
   </head>
   <body>
-	<h1>You win!</h1>
+  <form action= "leaderboard.php" method="get" class="form">
 	<p>Congratulations! You guessed that the word was <em>$word</em>.</p>
+  <input type="hidden" name="username" value= "$user"/>
+  <input type="hidden" name="password" value= "$pw"/>
+  <input type="hidden" name="score" value= "$score"/>
+  <br>
+  <br>
+  <br>
+  <input type = "submit" value = "Check the leaderboard">
+  </form>
   </body>
 </html>
 ENDPAGE;
