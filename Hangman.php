@@ -170,6 +170,11 @@ function handleGuess() {
 
   if(!strstr($word, $letter)) {
 	$wrong++;
+  echo "<script>
+
+ var audio = new Audio('wrong.mp3');
+ audio.play();
+ </script>";
   }
 
   $lettersguessed = $lettersguessed . $letter;
