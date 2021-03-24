@@ -133,6 +133,11 @@ function congratulateWinner($word) {
   </body>
 </html>
 ENDPAGE;
+	echo "<script>
+
+ var won = new Audio('win.mp3');
+ won.play();
+ </script>";
 }
 
 function matchLetters($word, $guessedLetters) {
