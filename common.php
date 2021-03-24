@@ -4,7 +4,7 @@
 ?>
 
 <!DOCTYPE html>
-<!--Function for the top of the page containing the logo nerdLuv-->
+<!--Function for the top of the page containing the logo-->
 <html lang="en" dir = "ltr">
     <head>
         <meta charset="utf-8">
