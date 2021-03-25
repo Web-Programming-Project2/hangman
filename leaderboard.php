@@ -14,10 +14,9 @@
     <?php
 
     $user = $_GET["username"];
-    $pw = $_GET["password"];
     $score = $_GET['score'];
-    $userpass = "$user||$pw";
-    $string = "$user||$pw||$score";
+    $userpass = "$user||";
+    $string = "$user||$score";
     print_r($score);
 
       // open file
@@ -26,7 +25,7 @@
         while (true) {
           $str2 = fgets($fh);
           $arr = explode("||",$string); //current user info
-          $arr2 = explode("||",$str2); //scores.txt player info
+          $arr2 = explode("",$str2); //scores.txt player info
           // if no more lines to read break
           if (!$str2) {break;}
 
@@ -38,16 +37,16 @@
               break;
             }
               //if score is same break
-          else if (strncmp($str2,$string)==0) { break;}
+          else if (strcmp($str2,$string)==0) { break;}
           //if score is greater
-          else if (strncmp($arr2[2],$arr[2])>0) {
+          else if (strcmp($arr2[2],$arr[2])>0) {
             $fh = $string2;
             echo "Score updated";
-            file_put_content("scores.txt",$fn);
+            file_put_contents("scores.txt",$fn);
             break;
           }
           // if score is less than
-          else if (strncmp($arr2[2],$arr[2])<0){
+          else if (strcmp($arr2[2],$arr[2])<0){
             break;
           }
 
@@ -57,6 +56,17 @@
 
 
      ?>
+      <?php
+      //table to display leaderboard
+        echo '<table border="1">';
+        $file = fopen("scores.txt", "r") or die("Unable to open file!");
+        while (!feof($file)){   
+            $data = fgets($file); 
+            echo "<tr><td>" . str_replace('||','</td><td>',$data) . '</td></tr>';
+        }
+        echo '</table>';
+        fclose($file);
+    ?>
         </div>
    </div>
  </div>
