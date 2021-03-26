@@ -15,43 +15,40 @@
 
     $user = $_GET["username"];
     $score = $_GET['score'];
-    $userpass = "$user||";
+    $userCheck = "$user||";
     $string = "$user||$score";
-    print_r($score);
 
       // open file
-        $fh = fopen("scores.txt", 'r+') or die("can't open file");
+        $fh = fopen("scores.txt", 'a') or die("can't open file");
         $file = file_get_contents("scores.txt");
-        while (true) {
-          $str2 = fgets($fh);
-          $arr = explode("||",$string); //current user info
-          $arr2 = explode("",$str2); //scores.txt player info
-          // if no more lines to read break
-          if (!$str2) {break;}
+        //no score found, add score
+        if(!strstr($file, "$userCheck")){
+            $newL = $string . "\n";
+            fwrite($fh, $newL);
+            echo "Score added";
+        }else{
+              while (true) {
+                $str = fgets($fh);
+                $arr = explode("",$str); //scores.txt player info
+                // if no more lines to read break
+                print_r($arr);
+                if (!$str) {break;}
+                    //if score is same break
+                else if (strcmp($str,$string)==0) { break;}
+                //if score is greater
+                else if (strcmp($score,$arr[2])>0 && ($user == $arr[0])) {
+                  $fh = $string;
+                  echo "Score updated";
+                  file_put_contents("scores.txt",$fh);
+                  break;
+                }
+                // if score is less than
+                else if (strcmp($score,$arr[1])<0 && ($user == $arr[0])){
+                  break;
+                }
 
-          //no score found, add score
-          if(!strstr($file, "$userpass")){
-              $newL = $string . "\n";
-              fwrite($fh, $newL);
-              echo "Score added";
-              break;
-            }
-              //if score is same break
-          else if (strcmp($str2,$string)==0) { break;}
-          //if score is greater
-          else if (strcmp($arr2[2],$arr[2])>0) {
-            $fh = $string2;
-            echo "Score updated";
-            file_put_contents("scores.txt",$fn);
-            break;
-          }
-          // if score is less than
-          else if (strcmp($arr2[2],$arr[2])<0){
-            break;
-          }
-
-
-        fclose($fh);
+              }
+            fclose($fh);
         }
 
 
@@ -60,11 +57,13 @@
       //table to display leaderboard
         echo '<table border="1">';
         $file = fopen("scores.txt", "r") or die("Unable to open file!");
-        while (!feof($file)){   
-            $data = fgets($file); 
-            echo "<tr><td>" . str_replace('||','</td><td>',$data) . '</td></tr>';
+        while (!feof($file)){
+            $data = fgets($file);
+            echo $data;
+            echo "<br>";
+
         }
-        echo '</table>';
+
         fclose($file);
     ?>
         </div>

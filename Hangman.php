@@ -155,7 +155,7 @@ function killPlayer($word) {
   </head>
   <body>
   <form action= "leaderboard.php" method="get" class="form">
-	<p>"Congrats, $user you guessed $word correctly!</p>
+	<p>$user the word you were trying to guess was $word.</p>
   <input type="hidden" name="username" value= "$user"/>
   <input type="hidden" name="password" value= "$pw"/>
   <input type="hidden" name="score" value= "$score"/>
@@ -184,7 +184,7 @@ function endGameWinner(){
   $pw =$_GET["password"];
   $score = $_POST['score'];
 
-  echo "Congrats $user you this level!";
+  echo "Congrats $user you win this level!";
   echo <<<ENDPAGE
 <!DOCTYPE html>
 <html>
@@ -193,7 +193,6 @@ function endGameWinner(){
   </head>
   <body>
   <form action= "leaderboard.php" method="get" class="form">
-	<p>The word you were trying to guess was <em>$word</em>.</p>
   <input type="hidden" name="username" value= "$user"/>
   <input type="hidden" name="password" value= "$pw"/>
   <input type="hidden" name="score" value= "$score"/>
@@ -253,7 +252,7 @@ function handleGuess() {
 
   if ((!strstr($guesstemplate, "_")) && ($count!=$gameCount)) {
    	congratulateWinner($word);
-  } else if (($wrong >= 6) && ($count!=$gameCount)) {
+  } else if (($wrong >= 6)) {
 	   killPlayer($word);
   } else if((!strstr($guesstemplate, "_"))&& ($count==$gameCount) ){
     endGameWinner();
