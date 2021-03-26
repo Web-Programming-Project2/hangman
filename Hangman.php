@@ -155,7 +155,8 @@ function killPlayer($word) {
   </head>
   <body>
   <form action= "leaderboard.php" method="get" class="form">
-	<p>"Congrats, $user you guessed $word correctly!</p>
+	<p>The word was $word !<p>
+	<p>"You can always check the leaderboard to see how you stacked up against others!"</p>	
   <input type="hidden" name="username" value= "$user"/>
   <input type="hidden" name="password" value= "$pw"/>
   <input type="hidden" name="score" value= "$score"/>
