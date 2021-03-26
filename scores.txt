@@ -4,3 +4,6 @@ rpowers8||4
 bob||3
 mary||2
 ray||4
+sarahp||4
+alice||3
+queen||2
